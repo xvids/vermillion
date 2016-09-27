@@ -17,7 +17,7 @@ HL_MSG_ReadBits MSG_ReadBits = nullptr;
 HL_MSG_StartBitReading MSG_StartBitReading = nullptr;
 HL_MSG_EndBitReading MSG_EndBitReading = nullptr;
 
-void MSG_SaveReadCount()
+void MSG_SaveReadCount() 
 {
 	MSG_SavedReadCount = *MSG_ReadCount;
 }
