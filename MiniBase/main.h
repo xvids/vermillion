@@ -2,6 +2,7 @@
 
 #include <Windows.h>
 #include <TlHelp32.h>
+#include <cstdint>
 
 #pragma comment(linker,"/entry:DllMain")
 #pragma comment(linker, "/merge:.CRT=.rdata")

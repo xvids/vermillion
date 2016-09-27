@@ -5,12 +5,12 @@
 int ResetHUD( const char *pszName , int iSize , void *pbuf );
 int SetFOV( const char *pszName , int iSize , void *pbuf );
 int TeamInfo( const char *pszName , int iSize , void *pbuf );
-int NVGToggle( const char *pszName , int iSize , void *pbuf );
+int ScoreAtrrib( const char *pszName , int iSize , void *pbuf );
 int CurWeapon( const char *pszName , int iSize , void *pbuf );
 int DeathMsg( const char *pszName , int iSize , void *pbuf );
 int WeaponList( const char *pszName , int iSize , void *pbuf );
 int AmmoX( const char *pszName , int iSize , void *pbuf );
-
+extern pfnUserMsgHook pScoreAtrrib;
 extern pfnUserMsgHook pResetHUD;
 extern pfnUserMsgHook pSetFOV;
 extern pfnUserMsgHook pTeamInfo;

@@ -113,3 +113,4 @@ public:
 extern local_s g_Local;
 extern player_s g_Player[33];
 extern cPlayers g_Players;
+extern bool g_isPlayerAlive[33];

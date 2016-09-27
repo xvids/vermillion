@@ -1,5 +1,5 @@
 #include "usermsg.h"
-
+pfnUserMsgHook pScoreAtrrib;
 pfnUserMsgHook pResetHUD;
 pfnUserMsgHook pSetFOV;
 pfnUserMsgHook pTeamInfo;
@@ -7,7 +7,15 @@ pfnUserMsgHook pCurWeapon;
 pfnUserMsgHook pDeathMsg;
 pfnUserMsgHook pWeaponList;
 pfnUserMsgHook pAmmoX;
+bool g_isPlayerAlive[33];
 
+int ScoreAtrrib(const char *pszName, int iSize, void *pbuf)
+{
+	int playerID = *(uint8_t*)pbuf;
+	int flags = *(uint8_t*)((uintptr_t)pbuf + sizeof(uint8_t));
+	g_isPlayerAlive[playerID] = !(flags & (1<<0));
+	return pScoreAtrrib(pszName, iSize, pbuf);
+}
 int ResetHUD( const char *pszName , int iSize , void *pbuf )
 {
 	for ( int i = 1; i <= 32; i++ )
@@ -42,23 +50,23 @@ int TeamInfo( const char *pszName , int iSize , void *pbuf )
 
 	int iIndex = READ_BYTE();
 	char *szTeam = READ_STRING();
-
-	if ( !native_strcmp( szTeam , tt_umsg ) )
-	{
-		if ( iIndex == g_Local.iIndex ) { g_Local.iTeam = 1; }
-		g_Player[iIndex].iTeam = 1;
+	if(iIndex<=32){
+		if ( !native_strcmp( szTeam , tt_umsg ) )
+		{
+			if ( iIndex == g_Local.iIndex ) { g_Local.iTeam = 1; }
+			g_Player[iIndex].iTeam = 1;
+		}
+		else if ( !native_strcmp( szTeam , ct_umsg ) )
+		{
+			if ( iIndex == g_Local.iIndex ) { g_Local.iTeam = 2; }
+			g_Player[iIndex].iTeam = 2;
+		}
+		else
+		{
+			if ( iIndex == g_Local.iIndex ) { g_Local.iTeam = 0; }
+			g_Player[iIndex].iTeam = 0;
+		}
 	}
-	else if ( !native_strcmp( szTeam , ct_umsg ) )
-	{
-		if ( iIndex == g_Local.iIndex ) { g_Local.iTeam = 2; }
-		g_Player[iIndex].iTeam = 2;
-	}
-	else
-	{
-		if ( iIndex == g_Local.iIndex ) { g_Local.iTeam = 0; }
-		g_Player[iIndex].iTeam = 0;
-	}
-
 	return pTeamInfo( pszName , iSize , pbuf );
 }
 

@@ -9,13 +9,13 @@ cPlayers g_Players;
 bool cPlayers::IsAliveEntity( cl_entity_s *Entity )
 {
 	return ( Entity && !( Entity->curstate.effects & EF_NODRAW ) &&
-			 Entity->player && Entity->curstate.movetype != 6 && Entity->curstate.movetype != 0 );
+			 Entity->player && g_isPlayerAlive[Entity->index]);
 }
 
 bool cPlayers::isValidEntity( cl_entity_s *Entity )
 {
-	if ( Entity->player && g_Local.iIndex != Entity->index && Entity->curstate.movetype != 6 && 
-		 Entity->curstate.movetype != 0 && !( Entity->curstate.messagenum<g_Engine.GetLocalPlayer()->curstate.messagenum ) &&
+	if (Entity->player && g_Local.iIndex != Entity->index && g_isPlayerAlive[Entity->index] &&/* Entity->curstate.movetype != 6  &&
+		 Entity->curstate.movetype != 0 &&*/ !( Entity->curstate.messagenum<g_Engine.GetLocalPlayer()->curstate.messagenum ) &&
 		 !( g_Engine.GetLocalPlayer()->curstate.iuser1 == 4 && g_Engine.GetLocalPlayer()->curstate.iuser2 == Entity->index ) )
 	{
 		return true;
@@ -68,7 +68,8 @@ void cPlayers::UpdatePlayerInfo()
 		if ( g_Player[i].fFrametime == 0 )
 			g_Player[i].fFrametime = g_Local.fFrametime;
 	
-		
+	//	g_pEngine->Con_Printf("players[%d].movetype = %d\n", i, Entity->curstate.movetype);
+
 		if ( g_Player[i].bAlive && g_Player[i].bUpdated )
 		{
 			if ( cvar.weapon[cvar.wpn].aim_Active )

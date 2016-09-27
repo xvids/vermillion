@@ -8,7 +8,7 @@ net_status_t g_nStatus;
 void HookUserMessages()
 {
 	pUserMsgBase = (PUserMsg)offset.FindUserMsgBase();
-
+	char score_atrrib_msg[] = { 'S','c','o','r','e','A','t','t','r','i','b',0 };
 	char reset_hud_msg[] = { 'R','e','s','e','t','H','U','D',0 };
 	char set_fov_msg[] = { 'S','e','t','F','O','V',0 };
 	char team_info_msg[] = { 'T','e','a','m','I','n','f','o',0 };
@@ -16,6 +16,7 @@ void HookUserMessages()
 	char death_msg_msg[] = { 'D','e','a','t','h','M','s','g',0 };
 	char weaponlist_msg[] = { 'W','e','a','p','o','n','L','i','s','t',0 };
 	char ammox_msg[] = { 'A','m','m','o','X',0 };
+	pScoreAtrrib = HookUserMsg(score_atrrib_msg, ScoreAtrrib);
 
 	pResetHUD = HookUserMsg( reset_hud_msg , ResetHUD );
 	pSetFOV = HookUserMsg( set_fov_msg , SetFOV );
