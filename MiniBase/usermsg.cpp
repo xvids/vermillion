@@ -51,12 +51,12 @@ int TeamInfo( const char *pszName , int iSize , void *pbuf )
 	int iIndex = READ_BYTE();
 	char *szTeam = READ_STRING();
 	if(iIndex<=32){
-		if ( !native_strcmp( szTeam , tt_umsg ) )
+		if ( !native_strcmpi( szTeam , tt_umsg ) )
 		{
 			if ( iIndex == g_Local.iIndex ) { g_Local.iTeam = 1; }
 			g_Player[iIndex].iTeam = 1;
 		}
-		else if ( !native_strcmp( szTeam , ct_umsg ) )
+		else if ( !native_strcmpi( szTeam , ct_umsg ) )
 		{
 			if ( iIndex == g_Local.iIndex ) { g_Local.iTeam = 2; }
 			g_Player[iIndex].iTeam = 2;

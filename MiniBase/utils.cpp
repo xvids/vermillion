@@ -152,7 +152,10 @@ int native_strcmp( char *pStr1 , char *pStr2 )
 {
 	return lstrcmpA( pStr1 , pStr2 );
 }
-
+int native_strcmpi( char *pStr1 , char *pStr2 )
+{
+	return lstrcmpiA( pStr1 , pStr2 );
+}
 int native_strlen( char *pStr )
 {
 	return lstrlenA( pStr );

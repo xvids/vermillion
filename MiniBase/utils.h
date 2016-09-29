@@ -22,7 +22,7 @@ char* native_strcpy( char *dest , const char *src );
 char* native_strncpy( char *dest , const char *src , int n );
 char* native_strcat( char *dest , const char *src );
 char* native_strstr( char *in , char *str );
-
+int native_strcmpi( char *pStr1 , char *pStr2 );
 int native_strcmp( char *pStr1 , char *pStr2 );
 int native_strlen( char *pStr );
 int native_strncmp( char const* _Str1 , char const* _Str2 , size_t MaxCount );
