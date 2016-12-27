@@ -14,9 +14,9 @@ bool cPlayers::IsAliveEntity( cl_entity_s *Entity )
 
 bool cPlayers::isValidEntity( cl_entity_s *Entity )
 {
-	if (Entity->player && g_Local.iIndex != Entity->index && g_isPlayerAlive[Entity->index] &&/* Entity->curstate.movetype != 6  &&
-		 Entity->curstate.movetype != 0 &&*/ !( Entity->curstate.messagenum<g_Engine.GetLocalPlayer()->curstate.messagenum ) &&
-		 !( g_Engine.GetLocalPlayer()->curstate.iuser1 == 4 && g_Engine.GetLocalPlayer()->curstate.iuser2 == Entity->index ) )
+	if (Entity->player && g_Local.iIndex != Entity->index && g_isPlayerAlive[Entity->index] /*&& Entity->curstate.movetype != 6  &&
+		 Entity->curstate.movetype != 0 */ && !( Entity->curstate.messagenum<g_Engine.GetLocalPlayer()->curstate.messagenum )/* &&
+		 !( g_Engine.GetLocalPlayer()->curstate.iuser1 == 4 && g_Engine.GetLocalPlayer()->curstate.iuser2 == Entity->index ) */)
 	{
 		return true;
 	}
