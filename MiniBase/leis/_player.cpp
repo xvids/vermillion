@@ -6,17 +6,22 @@ cPlayers g_Players;
 
 #pragma warning(disable:4244)
 
-bool cPlayers::IsAliveEntity( cl_entity_s *Entity )
+bool cPlayers::IsAliveEntity(cl_entity_s *Entity)
 {
-	return ( Entity && !( Entity->curstate.effects & EF_NODRAW ) &&
-			 Entity->player && g_isPlayerAlive[Entity->index]);
+	if (cvar.esp_BypassFuckValidate){
+		return (Entity && Entity->player && g_isPlayerAlive[Entity->index]);
+	}
+	else {
+		return (Entity && !(Entity->curstate.effects & EF_NODRAW) &&
+			Entity->player && g_isPlayerAlive[Entity->index]);
+	}
 }
 
-bool cPlayers::isValidEntity( cl_entity_s *Entity )
+bool cPlayers::isValidEntity(cl_entity_s *Entity)
 {
 	if (Entity->player && g_Local.iIndex != Entity->index && g_isPlayerAlive[Entity->index] &&/* Entity->curstate.movetype != 6  &&
-		 Entity->curstate.movetype != 0 &&*/ !( Entity->curstate.messagenum<g_Engine.GetLocalPlayer()->curstate.messagenum ) &&
-		 !( g_Engine.GetLocalPlayer()->curstate.iuser1 == 4 && g_Engine.GetLocalPlayer()->curstate.iuser2 == Entity->index ) )
+																							  Entity->curstate.movetype != 0 &&*/ !(Entity->curstate.messagenum<g_Engine.GetLocalPlayer()->curstate.messagenum) &&
+		!(g_Engine.GetLocalPlayer()->curstate.iuser1 == 4 && g_Engine.GetLocalPlayer()->curstate.iuser2 == Entity->index))
 	{
 		return true;
 	}

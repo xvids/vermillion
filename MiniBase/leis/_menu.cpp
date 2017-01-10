@@ -190,7 +190,8 @@ void cMenu::InitializeMenu()
 		char CFG_ESP_DRAWAIMSPOT[] = { 'e','s','p','_','D','r','a','w','A','i','m','s','p','o','t',0 };
 		char CFG_ESP_DRAW_FOV[] = { 'e','s','p','_','D','r','a','w','F','o','v',0 };
 		char CFG_ESP_DRAW_TRIGGER[] = { 'e','s','p','_','D','r','a','w','T','r','i','g','g','e','r',0 };
-
+		char CFG_ESP_BYPASS[] = { 'e','s','p','_','n','o','v','a','l','i','d','a','t','e',0 };
+		 
 		AddSubMenu( CFG_ESP_STYLE , &cvar.esp_Style , 0 , 1 , 1 );
 		AddSubMenu( CFG_ESP_SIZE , &cvar.esp_Size , 1 , 20 , 1 );
 		AddSubMenu( CFG_ESP_VISIBLE , &cvar.esp_Visible , 0 , 2 , 1 );
@@ -205,6 +206,8 @@ void cMenu::InitializeMenu()
 		AddSubMenu( CFG_ESP_DRAWAIMSPOT , &cvar.esp_DrawAimspot , 0 , 1 , 1 );
 		AddSubMenu( CFG_ESP_DRAW_FOV , &cvar.esp_DrawFov , 0 , 1 , 1 );
 		AddSubMenu( CFG_ESP_DRAW_TRIGGER , &cvar.esp_DrawTrigger , 0 , 1 , 1 );
+		AddSubMenu( CFG_ESP_BYPASS, &cvar.esp_BypassFuckValidate, 0, 1, 1);
+
 	}
 	if ( M_EntryPos == SelectIndex++ )
 	{

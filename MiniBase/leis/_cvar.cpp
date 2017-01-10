@@ -68,6 +68,7 @@ void cCvar::LoadCvarFromIni()
 	char CFG_ESP_DRAWAIMSPOT[] = { 'e','s','p','_','D','r','a','w','A','i','m','s','p','o','t',0 };
 	char CFG_ESP_DRAW_FOV[] = { 'e','s','p','_','D','r','a','w','F','o','v',0 };
 	char CFG_ESP_DRAW_TRIGGER[] = { 'e','s','p','_','D','r','a','w','T','r','i','g','g','e','r',0 };
+	char CFG_ESP_BYPASS[] = { 'e','s','p','_','n','o','v','a','l','i','d','a','t','e',0 };
 
 	char CFG_MISC_BHOP[] = { 'm','i','s','c','_','B','h','o','p',0 };
 	char CFG_MISC_PUNCH[] = { 'm','i','s','c','_','P','u','n','c','h',0 };
@@ -137,6 +138,7 @@ void cCvar::LoadCvarFromIni()
 	esp_DrawAimspot = ReadInt( CFG_ESP , CFG_ESP_DRAWAIMSPOT , 0 , IniPatch );
 	esp_DrawFov = ReadInt( CFG_ESP , CFG_ESP_DRAW_FOV , 0 , IniPatch );
 	esp_DrawTrigger = ReadInt( CFG_ESP , CFG_ESP_DRAW_TRIGGER , 0 , IniPatch );
+	esp_BypassFuckValidate = ReadInt(CFG_ESP, CFG_ESP_BYPASS, 0, IniPatch);
 
 	misc_Bhop = ReadInt( CFG_MISC , CFG_MISC_BHOP , 0 , IniPatch );
 	misc_Punch = ReadInt( CFG_MISC , CFG_MISC_PUNCH , 0 , IniPatch );
@@ -448,7 +450,7 @@ void cCvar::DisableAll()
 	esp_DrawAimspot = 0;
 	esp_DrawFov = 0;
 	esp_DrawTrigger = 0;
-
+	esp_BypassFuckValidate = 0;
 	knf_Active = 0;
 
 	misc_Bhop = 0;

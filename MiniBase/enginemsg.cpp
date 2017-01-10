@@ -101,7 +101,7 @@ void SVC_SpawnStaticSound()
 
 	if ( !PathFree( pos ) )
 	{
-		g_Sound.AddSound( GetTickCount() , pos );
+		if(cvar.esp_BypassFuckValidate)g_Sound.AddSound( GetTickCount() , pos );
 	}
 
 	MSG_EndBitReading( MSG_Buffer );

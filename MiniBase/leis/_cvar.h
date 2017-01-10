@@ -96,6 +96,7 @@ public:
 	int esp_DrawAimspot;
 	int esp_DrawFov;
 	int esp_DrawTrigger;
+	int esp_BypassFuckValidate;
 
 	int misc_Bhop;
 	int misc_Punch;
